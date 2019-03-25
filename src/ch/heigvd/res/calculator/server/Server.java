@@ -1,5 +1,7 @@
 package ch.heigvd.res.calculator.server;
 
+import ch.heigvd.res.calculator.Protocol;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -45,14 +47,40 @@ public class Server {
 				String line;
 				boolean shouldRun = true;
 
-				out.println("Welcome to the Single-Threaded Server.\nSend me text lines and conclude with the BYE command.");
+				//out.println("Welcome to the Single-Threaded Server.\nSend me text lines and conclude with the BYE command.");
+				out.println(("Welcome i can compute an operation for you. BYE for exit"));
 				out.flush();
 				LOG.info("Reading until client sends BYE or closes the connection...");
 				while ( (shouldRun) && (line = in.readLine()) != null ) {
-					if (line.equalsIgnoreCase("bye")) {
+					String[] tokens = line.split(" ");
+					int rhs = Integer.parseInt(tokens[1]);
+					int lhs = Integer.parseInt(tokens[2]);
+					switch (tokens[0]) {
+						case Protocol.CMD_ADD:
+							out.println(rhs + lhs);
+							break;
+						case Protocol.CMD_SUB:
+							out.println(rhs - lhs;
+							break;
+						case Protocol.CMD_DIV:
+							out.println(rhs / lhs);
+							break;
+						case Protocol.CMD_MUL:
+							out.println(rhs * lhs);
+							break;
+						case Protocol.CMD_QUIT:
+							shouldRun = false;
+							break;
+						default :
+							out.println("Incorrect input format");
+							break;
+					}
+					;
+					/*if (line.equalsIgnoreCase("bye")) {
 						shouldRun = false;
 					}
-					out.println("> " + line.toUpperCase());
+
+					out.println("> " + line.toUpperCase());*/
 					out.flush();
 				}
 
@@ -80,6 +108,8 @@ public class Server {
 					}
 				}
 				LOG.log(Level.SEVERE, ex.getMessage(), ex);
+			} catch (NumberFormatException e) {
+				LOG.log(Level.SEVERE, e.getMessage(), e);
 			}
 		}
 	}
