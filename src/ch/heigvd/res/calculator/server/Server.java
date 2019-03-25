@@ -37,7 +37,6 @@ public class Server {
 
 		while (true) {
 			try {
-
 				LOG.log(Level.INFO, "Waiting (blocking) for a new client on port {0}", port);
 				clientSocket = serverSocket.accept();
 				in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
