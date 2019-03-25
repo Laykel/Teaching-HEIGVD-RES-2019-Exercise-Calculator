@@ -1,6 +1,5 @@
 package ch.heigvd.res.calculator.client;
 
-import javax.management.NotificationListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
