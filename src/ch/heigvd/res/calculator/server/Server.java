@@ -40,26 +40,32 @@ public class Server {
 		while (true) {
 			try {
 				LOG.log(Level.INFO, "Waiting (blocking) for a new client on port {0}", port);
+
 				clientSocket = serverSocket.accept();
 				in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 				out = new PrintWriter(clientSocket.getOutputStream());
 				String line;
 				boolean shouldRun = true;
 
-				//out.println("Welcome to the Single-Threaded Server.\nSend me text lines and conclude with the BYE command.");
-				out.println(("Welcome i can compute an operation for you. BYE for exit"));
+				out.println("Welcome to the Calculator Server.\n" +
+                            "Send ADD, SUB, MUL OR DIV followed by operand1 and operand2.\n" +
+							"Example: ADD 4 5 -> 9" +
+							"Conclude with BYE.");
 				out.flush();
+
 				LOG.info("Reading until client sends BYE or closes the connection...");
-				while ( (shouldRun) && (line = in.readLine()) != null ) {
+				while ((shouldRun) && (line = in.readLine()) != null) {
 					String[] tokens = line.split(" ");
+
 					int rhs = Integer.parseInt(tokens[1]);
 					int lhs = Integer.parseInt(tokens[2]);
+
 					switch (tokens[0]) {
 						case Protocol.CMD_ADD:
 							out.println(rhs + lhs);
 							break;
 						case Protocol.CMD_SUB:
-							out.println(rhs - lhs;
+							out.println(rhs - lhs);
 							break;
 						case Protocol.CMD_DIV:
 							out.println(rhs / lhs);
@@ -74,12 +80,6 @@ public class Server {
 							out.println("Incorrect input format");
 							break;
 					}
-					;
-					/*if (line.equalsIgnoreCase("bye")) {
-						shouldRun = false;
-					}
-
-					out.println("> " + line.toUpperCase());*/
 					out.flush();
 				}
 

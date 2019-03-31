@@ -8,6 +8,4 @@ public class Protocol {
     public static final String CMD_DIV = "DIV";
     public static final String CMD_MUL = "MUL";
     public static final String CMD_QUIT = "BYE";
-
-
 }
