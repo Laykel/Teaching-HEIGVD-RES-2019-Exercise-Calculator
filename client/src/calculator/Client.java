@@ -36,21 +36,21 @@ public class Client {
 
         try {
             while (in.ready()) {
-//                LOG.log(Level.INFO, "> ", in.readLine());
                 System.out.println("> " + in.readLine());
             }
 
             br = new BufferedReader(new InputStreamReader(System.in));
 
-            while (connected) {
-                System.out.println("Enter operation or BYE.");
-
-                // Read user input
-                line = br.readLine();
+            // Read user input
+            while (!(line = br.readLine()).equals("BYE")) {
                 // Transmit it to server
                 out.println(line);
+                out.flush();
+
                 // Print server response
                 System.out.println("> " + in.readLine());
+
+                System.out.println("Enter operation or BYE.");
             }
         }
         catch (IOException e) {
