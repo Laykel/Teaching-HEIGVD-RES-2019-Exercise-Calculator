@@ -1,6 +1,4 @@
-package ch.heigvd.res.calculator;
-
-import ch.heigvd.res.calculator.server.Server;
+package calculator;
 
 public class App {
     public static void main(String[] args) {

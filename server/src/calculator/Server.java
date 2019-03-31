@@ -1,6 +1,4 @@
-package ch.heigvd.res.calculator.server;
-
-import ch.heigvd.res.calculator.Protocol;
+package calculator;
 
 import java.io.BufferedReader;
 import java.io.IOException;

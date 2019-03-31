@@ -1,4 +1,4 @@
-package ch.heigvd.res.calculator;
+package calculator;
 
 public class Protocol {
     public static final int PRESENCE_DEFAULT_PORT = 9998;
