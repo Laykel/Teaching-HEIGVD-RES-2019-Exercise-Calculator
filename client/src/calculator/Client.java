@@ -32,17 +32,17 @@ public class Client {
             return;
         }
 
-        String notification;
         String line = "";
 
         try {
-            while ((connected && (notification = in.readLine()) != null)) {
-                LOG.log(Level.INFO, "> {0}", notification);
+            while (in.ready()) {
+//                LOG.log(Level.INFO, "> ", in.readLine());
+                System.out.println("> " + in.readLine());
             }
 
             br = new BufferedReader(new InputStreamReader(System.in));
 
-            while (connected && line != "BYE") {
+            while (connected) {
                 System.out.println("Enter operation or BYE.");
 
                 // Read user input
@@ -78,8 +78,5 @@ public class Client {
                 LOG.log(Level.SEVERE, ex.getMessage(), ex);
             }
         }
-
-        out.println("HELLO ");
-        out.flush();
     }
 }

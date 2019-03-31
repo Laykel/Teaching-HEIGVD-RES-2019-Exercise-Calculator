@@ -47,7 +47,7 @@ public class Server {
 
 				out.println("Welcome to the Calculator Server.\n" +
                             "Send ADD, SUB, MUL OR DIV followed by operand1 and operand2.\n" +
-							"Example: ADD 4 5 -> 9" +
+							"Example: ADD 4 5 -> 9\n" +
 							"Conclude with BYE.");
 				out.flush();
 
